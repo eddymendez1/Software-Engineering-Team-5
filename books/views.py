@@ -66,6 +66,8 @@ User = get_user_model()
 def register_page(request):
 	form = RegisterForm(request.POST or None)
 	context = {
+		"title":"Registration:",
+		"content":"Create an account to have access to our premium content and discount prices.",
 		"form": form
 	}
 	if form.is_valid():
