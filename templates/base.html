@@ -1,0 +1,23 @@
+{% load static %}
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Base Template</title>
+    {% include 'base/css.html' %}   
+    {% block base_head %} {% endblock %}
+  </head>
+  <body>
+
+    {% include 'base/navbar.html' with brand_name='eCommerce' %}
+    {% block content %}{% endblock %}
+    {% include 'base/js.html' %}
+
+  </body>
+  <style>div.fixed { position: fixed;  bottom: 0;  right: 0;  width: 100px;}</style>
+<div class="fixed"><img src="{% static 'img/logo.jpg' %}" width="100" height="100"></div>
+</html>

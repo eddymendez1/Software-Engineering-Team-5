@@ -1,0 +1,26 @@
+<div class="card" style="width: 15rem;">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+		.checked {
+		    color: orange;
+		}
+		</style>
+
+ {% if instance.image %}
+  <a href="{{ instance.get_absolute_url }}">
+  	<img class="card-img-top" src="{{ instance.image.url }}" alt="{{ instance.title }} logo">
+  </a>	
+ {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{ instance.title }}</h5>
+    <p class="card-text">{{ instance.description|truncatechars:50 }}</p>
+    <h5>Customer's Rating</h5>
+	<span class="fa fa-star checked"></span>
+	<span class="fa fa-star checked"></span>
+	<span class="fa fa-star checked"></span>
+	<span class="fa fa-star"></span>
+	<span class="fa fa-star"></span>
+</br></br>
+    <a href="{{ instance.get_absolute_url }}" class="btn btn-primary">View</a>
+  </div>
+</div>
