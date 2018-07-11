@@ -8,7 +8,7 @@
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="{{ home_url }}"><!-- {% if brand_name %}{{ brand_name }}{% else %} eCommerce {% endif %}</a> -->
   <div class ='container'>
-   <img src="{% static 'img/logo.jpg' %}" width="30" height="30" class="d-inline-block align-top" alt="">MyBookSeller</a>
+   <img src="{% static 'img/logo.jpg' %}" width="30" height="30" class="d-inline-block align-top" alt="">MyBooksSeller</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -49,10 +49,15 @@
       <a class="nav-link " href="{% url 'login' %}">Log-in</a>
       <a class="nav-link " href="{% url 'register' %}">Register</a>
       {% endif %}
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <form method='GET' action='{% url "search:query" %}' class="form-inline my-2 my-lg-0">
+      <div class='input-group'>
+          <input class="form-control" type="search" placeholder="Search"  name='q' aria-label="Search">
+          <span class='input-group-btn'>
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </span>
+      </div>
     </form>
   </div>  
 </div>
 </nav>
-

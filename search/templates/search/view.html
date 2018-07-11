@@ -2,11 +2,31 @@
 
 {% block content %}
 <div class="container">
-	<div class='row'>
-		<div class = 'col-12 mb-3'>
-			Searched for {{ request.GET.q }}
+	<div class='row mb-3'>
+	{% if request.GET.q %}
+		<div class = 'col-12'>
+			Searched for <b>{{ request.GET.q }}</b>
 			<hr/>
 		</div>
+		{% else %}
+
+
+		<form method='GET' action='{% url "search:query" %}' class="form-inline my-2 my-lg-0">
+			<div class='input-group col-12 col-md-8 mx-auto py-5'>
+				<input class="form-control" type="search" placeholder="Search"  name='q' aria-label="Search">
+				<span class='input-group-btn'>
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				</span>
+			</div>
+		</form>
+		<div class='col-12'>
+			<hr>
+		</div>
+
+		{% endif %}
+	</div>
+
+	<div class='row'>
 
 
 	{% for obj in object_list %}

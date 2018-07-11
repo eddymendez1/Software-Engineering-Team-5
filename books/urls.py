@@ -39,7 +39,7 @@ urlpatterns = [
     url(r'^register/$', register_page, name='register'),
     url(r'^bootstrap/$', TemplateView.as_view(template_name='bootstrap/example.html')),
     url(r'^products/', include("products.urls", namespace=None)),
-    url(r'^search/', include("search.urls", namespace=None)),
-    url(r'^admin/', admin.site.urls), 
+    url(r'^search/', include(('search.urls', 'search'), namespace='search')),
+    url(r'^admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
