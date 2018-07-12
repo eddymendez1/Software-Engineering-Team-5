@@ -18,12 +18,13 @@
 	{% if object.image %}
 	<img src='{{ object.image.url }}' class='img-fluid' width="460" height="750"/> <br/>
 	{% endif %}
-
-	{% include 'products/snippets/update-cart.html' with product=object cart=cart %}
+			
+	
 </div>
 	<div class='col-sm-8'>
 	<br/><br/>{{ object.description|linebreaks }} <br/>
-
+	{% include 'products/snippets/update-cart.html' with product=object cart=cart %}
+	<br/>
 		<!-- test -->
 		
 		<div class="row">
