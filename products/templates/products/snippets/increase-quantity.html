@@ -1,0 +1,13 @@
+
+<form method='POST' action='{% url "cart:update" %}' class="form"> {% csrf_token %}
+        
+        <input type='hidden' name='update-quantity' value ='Increase' />
+
+        <input type="hidden" name="product_id" value='{{ product.id }}'/>
+
+        <button type='submit' class='btn'><i class="fas fa-angle-up"></i></button>
+</form>
+<!-- <form method='POST' action='{% url "cart:update" %}' class="form"> {% csrf_token %}
+        <input type='hidden' name='product_id' value ='+' />
+        <button type='submit' class='btn'><i class="fas fa-arrow-down"></i></button>
+</form> -->

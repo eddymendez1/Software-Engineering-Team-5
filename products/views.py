@@ -117,3 +117,11 @@ def product_detail_view(request, pk=None, *args, **kwargs):
 		context['in_cart'] = False
 
 	return render(request, "products/detail.html", context)
+
+
+
+def update_quantity(request, pk=None, *args, **kwargs):
+	print(request)
+
+
+# def change_product_quantity(request)

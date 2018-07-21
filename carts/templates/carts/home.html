@@ -2,13 +2,14 @@
 
 
 {% block content %}
-<h1>Shopping Cart</h1>
+<br><h1> Shopping Cart</h1> <br>
 {% if cart.products.exists %}
 <table class="table">
     <thead>
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Book Title</th>
+        <th scope="col">Quantity</th>
         <th scope="col">Price</th>
       </tr>
     </thead>
@@ -18,25 +19,71 @@
             <th scope="row"> {{ forloop.counter }}</th>
             <td><a href="{{ product.get_absolute_url }}">{{ product.title }}</a> 
                 {% include 'products/snippets/update-cart.html' with product=product cart=cart in_cart=True %}
-            
+              
             </td>
-            <td>{{ product.price }}</td>
+            <td>{% include 'products/snippets/increase-quantity.html' with product=product cart=cart %}
+                {{ product.quantity }}
+                {% include 'products/snippets/decrease-quantity.html' with product=product cart=cart %}
+            </td>
+            <td>{{ product.quantity }} @ ${{ product.price }}
+                {% include 'products/snippets/save.html' with product=product cart=cart %}
+            </td>
         </tr>
         {% endfor %}
       
       <tr>
-          <td colspan="2"></td>
-          <td><b>Sub Total: </b>{{ cart.subtotal }}</td>
+          <td colspan="3"></td>
+          <td><b>Sub Total: </b>${{ cart.subtotal }}</td>
+          
       </tr>
       
       <tr>
-        <td colspan="2"></td>
-        <td><b>Total: </b>{{ cart.total }}</td>
+        <td colspan="3"></td>
+        <td><b>Total: </b>${{ cart.total }}
+          {% include 'products/snippets/checkout.html' with product=product cart=cart %}</td>
+        
       </tr>
+
 
     </tbody>
   </table>
 {% else %}
 <p class='lead'>Looks like you cart is empty. Be sure to use code "FREEDOM" for 20% off book purchases through July!</p>
 {% endif %}
+<h2> Saved Items</h2><br>
+{% if wishlist.products.exists %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Book Title</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for product in wishlist.products.all %}
+        <tr>
+            <th scope="row"> {{ forloop.counter }}</th>
+            <td><a href="{{ product.get_absolute_url }}">{{ product.title }}</a> 
+                {% include 'products/snippets/update-cart.html' with product=product cart=cart in_cart=True %}
+              
+            </td>
+            <td>
+                {{ product.quantity }}
+            </td>
+            <td>{{ product.quantity }} @ ${{ product.price }}
+                {% include 'products/snippets/remove.html' with product=product cart=cart %}
+            </td>
+        </tr>
+        {% endfor %}
+      
+
+    </tbody>
+  </table>
+{% else %}
+<p class='lead'>Nothing Saved.</p>
+{% endif %}
+
+
 {% endblock %}
